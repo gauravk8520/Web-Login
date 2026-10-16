@@ -455,10 +455,15 @@
       try { localStorage.setItem(THEME_KEY, theme); } catch { /* preference not persisted */ }
     });
 
-    // Skip the form for people who are already signed in.
-    fetch('/api/me').then((response) => {
-      if (response.ok) window.location.replace('/dashboard');
-    }).catch(() => {});
+    // Supabase falls back to the Site URL (which redirects here) when redirectTo isn't allow-listed.
+    if (new URLSearchParams(window.location.hash.slice(1)).get('type') === 'recovery') {
+      window.location.replace('/reset-password' + window.location.hash);
+    } else {
+      // Skip the form for people who are already signed in.
+      fetch('/api/me').then((response) => {
+        if (response.ok) window.location.replace('/dashboard');
+      }).catch(() => {});
+    }
 
     const form = document.getElementById('login-form');
     const email = document.getElementById('email');
