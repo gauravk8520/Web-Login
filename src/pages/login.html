@@ -16,43 +16,100 @@
       letter-spacing: var(--typography-body-md-letterSpacing);
     }
 
-    .login-page {
-      box-sizing: border-box;
+    .auth-layout {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-14) * 5)), 1fr));
       min-block-size: 100vh;
       min-block-size: 100svh;
-      place-items: center;
-      padding: calc(var(--space-14) + var(--space-13)) var(--space-8);
     }
 
-    .login-content {
+    .auth-brand {
+      display: grid;
+      align-content: center;
+      gap: var(--space-10);
+      padding: calc(var(--space-14) + var(--space-9)) var(--space-12);
+      background: var(--color-brand-light);
+    }
+
+    .auth-brand__inner {
+      display: grid;
+      gap: var(--space-10);
+      max-inline-size: calc(var(--space-14) * 6);
+    }
+
+    .auth-brand__title {
+      margin: var(--space-0);
+      color: var(--color-text-brand);
+      font-size: var(--typography-heading-h2-fontSize);
+      line-height: var(--typography-heading-h2-lineHeight);
+      letter-spacing: var(--typography-heading-h2-letterSpacing);
+    }
+
+    .auth-brand__lead {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+      font-size: var(--typography-body-lg-fontSize);
+      line-height: var(--typography-body-lg-lineHeight);
+    }
+
+    .auth-brand__list {
+      display: grid;
+      gap: var(--space-8);
+      margin: var(--space-0);
+      padding: var(--space-0);
+      list-style: none;
+    }
+
+    .auth-brand__item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-6);
+    }
+
+    .auth-brand__tick {
+      flex: none;
+      inline-size: var(--space-9);
+      block-size: var(--space-9);
+      color: var(--color-text-brand);
+    }
+
+    .auth-panel {
+      display: grid;
+      place-items: center;
+      padding: calc(var(--space-14) + var(--space-9)) var(--space-9) var(--space-14);
+    }
+
+    .auth-content {
       display: grid;
       gap: var(--space-10);
       inline-size: 100%;
-      max-inline-size: calc(var(--space-14) * 7);
+      max-inline-size: calc(var(--space-14) * 6);
       min-inline-size: var(--space-0);
     }
 
-    .login-heading {
+    .auth-heading {
       display: grid;
-      justify-items: center;
-      gap: var(--space-8);
-      text-align: center;
+      gap: var(--space-4);
     }
 
-    .login-title {
+    .auth-title {
       margin: var(--space-0);
       font-size: var(--typography-heading-h1-fontSize);
       line-height: var(--typography-heading-h1-lineHeight);
       letter-spacing: var(--typography-heading-h1-letterSpacing);
     }
 
-    .login-form {
+    .auth-subtitle {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+    }
+
+    .auth-form {
       display: grid;
       gap: var(--space-9);
     }
 
-    .login-options {
+    .auth-options {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -60,7 +117,7 @@
       gap: var(--space-6);
     }
 
-    .login-help {
+    .auth-help {
       margin: var(--space-0);
       color: var(--color-text-secondary);
       text-align: center;
@@ -104,98 +161,144 @@
     </div>
   </aside>
 
-  <main class="login-page">
-    <div class="login-content">
-      <header class="login-heading">
+  <main class="auth-layout">
+    <section class="auth-brand" aria-labelledby="brand-title">
+      <div class="auth-brand__inner">
         <img src="https://lepide-design-system.vercel.app/v1/brand/lepide-mark.svg" width="40" height="40" alt="Lepide">
-        <h1 class="login-title">Sign in to Lepide</h1>
-      </header>
+        <h2 class="auth-brand__title" id="brand-title">See who changed what, and when.</h2>
+        <p class="auth-brand__lead">Audit, monitor and protect your data from one place.</p>
+        <ul class="auth-brand__list">
+          <li class="auth-brand__item">
+            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
+                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
+            <span>Track changes across your environment</span>
+          </li>
+          <li class="auth-brand__item">
+            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
+                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
+            <span>Investigate suspicious activity quickly</span>
+          </li>
+          <li class="auth-brand__item">
+            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
+                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
+            <span>Keep your team accountable with clear reports</span>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-      <div class="lp-card">
-        <div class="lp-card__body">
-          <form class="login-form" id="login-form" novalidate>
-            <div class="lp-input lp-input--full-width">
-              <div class="lp-input__row lp-input__row--label-top">
-                <label class="lp-input__label" for="email">Email</label>
-                <div class="lp-input__field" id="email-field">
-                  <input class="lp-input__input" id="email" name="email" type="email" autocomplete="username"
-                         required aria-invalid="false" aria-describedby="email-hint">
+    <section class="auth-panel">
+      <div class="auth-content">
+        <header class="auth-heading">
+          <h1 class="auth-title">Sign in to Lepide</h1>
+          <p class="auth-subtitle">Welcome back. Enter your details to continue.</p>
+        </header>
+
+        <div class="lp-card lp-card--elevated lp-card--borderless">
+          <div class="lp-card__body">
+            <form class="auth-form" id="login-form" novalidate>
+              <div class="lp-input lp-input--full-width">
+                <div class="lp-input__row lp-input__row--label-top">
+                  <label class="lp-input__label" for="email">Email</label>
+                  <div class="lp-input__field" id="email-field">
+                    <input class="lp-input__input" id="email" name="email" type="email" autocomplete="username"
+                           required aria-invalid="false" aria-describedby="email-hint">
+                  </div>
                 </div>
+                <div class="lp-input__message" id="email-hint">Use your work email</div>
+                <div class="lp-input__message lp-input__message--error" id="email-error" hidden>Enter your email.</div>
               </div>
-              <div class="lp-input__message" id="email-hint">Use your work email</div>
-              <div class="lp-input__message lp-input__message--error" id="email-error" hidden>Enter your email.</div>
-            </div>
 
-            <div class="lp-input lp-input--full-width">
-              <div class="lp-input__row lp-input__row--label-top">
-                <label class="lp-input__label" for="password">Password</label>
-                <div class="lp-input__field" id="password-field">
-                  <input class="lp-input__input" id="password" name="password" type="password" autocomplete="current-password"
-                         required aria-invalid="false" aria-describedby="password-error">
+              <div class="lp-input lp-input--full-width">
+                <div class="lp-input__row lp-input__row--label-top">
+                  <label class="lp-input__label" for="password">Password</label>
+                  <div class="lp-input__field" id="password-field">
+                    <input class="lp-input__input" id="password" name="password" type="password" autocomplete="current-password"
+                           required aria-invalid="false" aria-describedby="password-error">
+                  </div>
                 </div>
+                <div class="lp-input__message lp-input__message--error" id="password-error" hidden>Enter your password.</div>
               </div>
-              <div class="lp-input__message lp-input__message--error" id="password-error" hidden>Enter your password.</div>
-            </div>
 
-            <div class="login-options">
-              <label class="lp-checkbox">
-                <span class="lp-checkbox__control">
-                  <input class="lp-checkbox__input" type="checkbox" name="remember" value="yes">
-                  <span class="lp-checkbox__box" aria-hidden="true">
-                    <svg class="lp-checkbox__check" viewBox="0 0 10 8" fill="none" stroke="currentColor"
-                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4.2 3.8 7 9 1"/></svg>
-                    <svg class="lp-checkbox__dash" viewBox="0 0 10 2" fill="none" stroke="currentColor"
-                         stroke-width="1.8" stroke-linecap="round"><path d="M1 1h8"/></svg>
+              <div class="auth-options">
+                <label class="lp-checkbox">
+                  <span class="lp-checkbox__control">
+                    <input class="lp-checkbox__input" type="checkbox" name="remember" value="yes">
+                    <span class="lp-checkbox__box" aria-hidden="true">
+                      <svg class="lp-checkbox__check" viewBox="0 0 10 8" fill="none" stroke="currentColor"
+                           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4.2 3.8 7 9 1"/></svg>
+                      <svg class="lp-checkbox__dash" viewBox="0 0 10 2" fill="none" stroke="currentColor"
+                           stroke-width="1.8" stroke-linecap="round"><path d="M1 1h8"/></svg>
+                    </span>
                   </span>
-                </span>
-                <span class="lp-checkbox__label">Remember me</span>
-              </label>
-              <a class="lp-link lp-link--standalone" href="/forgot-password">Forgot password?</a>
-            </div>
+                  <span class="lp-checkbox__label">Remember me</span>
+                </label>
+                <a class="lp-link lp-link--standalone" href="/forgot-password">Forgot password?</a>
+              </div>
 
-            <!-- Hide the wrapper: the component's display rule must not override hidden. -->
-            <div id="login-error" hidden>
-              <div class="lp-message lp-message--error" role="alert">
-                <span class="lp-message__icon">
-                  <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
-                    <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
-                    <path d="M22.5 12 33 31.5H12L22.5 12Z" stroke="currentColor" stroke-width="2.4"
-                          stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M22.5 20v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                    <circle cx="22.5" cy="28.5" r="1.2" fill="currentColor"/>
-                  </svg>
-                </span>
-                <div class="lp-message__content">
-                  <div class="lp-message__text">
-                    <h3 class="lp-message__title" id="login-error-title">Complete the required fields</h3>
-                    <p class="lp-message__body" id="login-error-body">Enter your email and password, then try again.</p>
+              <!-- Hide the wrapper: the component's display rule must not override hidden. -->
+              <div id="login-error" hidden>
+                <div class="lp-message lp-message--error" role="alert">
+                  <span class="lp-message__icon">
+                    <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
+                      <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
+                      <path d="M22.5 12 33 31.5H12L22.5 12Z" stroke="currentColor" stroke-width="2.4"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M22.5 20v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                      <circle cx="22.5" cy="28.5" r="1.2" fill="currentColor"/>
+                    </svg>
+                  </span>
+                  <div class="lp-message__content">
+                    <div class="lp-message__text">
+                      <h3 class="lp-message__title" id="login-error-title">Complete the required fields</h3>
+                      <p class="lp-message__body" id="login-error-body">Enter your email and password, then try again.</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <button class="lp-button lp-button--primary lp-button--md lp-button--full-width" type="submit">Sign in</button>
-          </form>
+              <button class="lp-button lp-button--primary lp-button--md lp-button--full-width" type="submit">Sign in</button>
+            </form>
+          </div>
         </div>
-      </div>
 
-      <p class="login-help">No account? <a class="lp-link" href="/signup">Create an account</a></p>
-    </div>
+        <p class="auth-help">No account? <a class="lp-link" href="/signup">Create an account</a></p>
+      </div>
+    </section>
   </main>
 
   <script src="https://lepide-design-system.vercel.app/v1/lepidus.js" defer></script>
   <script>
+    const THEME_KEY = 'lp-theme';
+    const THEME_LABELS = { light: 'Light', dark: 'Dark', hc: 'High contrast' };
     const themeSwitcher = document.getElementById('theme-switcher');
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      themeSwitcher.querySelector('.lp-dropdown__trigger-label').textContent = THEME_LABELS[theme];
+      themeSwitcher.querySelectorAll('[role="option"]').forEach((option) => {
+        option.setAttribute('aria-selected', String(option.dataset.value === theme));
+      });
+    }
+
+    try {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved in THEME_LABELS) applyTheme(saved);
+    } catch { /* storage unavailable: keep the default theme */ }
+
     themeSwitcher.addEventListener('lp-dropdown-change', (event) => {
       const theme = event.detail.option.dataset.value;
-      if (!['light', 'dark', 'hc'].includes(theme)) {
+      if (!(theme in THEME_LABELS)) {
         throw new Error('Unsupported Lepidus theme: ' + theme);
       }
-      document.documentElement.dataset.theme = theme;
-      themeSwitcher.querySelectorAll('[role="option"]').forEach((option) => {
-        option.setAttribute('aria-selected', String(option === event.detail.option));
-      });
+      applyTheme(theme);
+      try { localStorage.setItem(THEME_KEY, theme); } catch { /* preference not persisted */ }
     });
+
+    // Skip the form for people who are already signed in.
+    fetch('/api/me').then((response) => {
+      if (response.ok) window.location.replace('/dashboard');
+    }).catch(() => {});
 
     const form = document.getElementById('login-form');
     const email = document.getElementById('email');
@@ -205,7 +308,6 @@
     const summary = document.getElementById('login-error');
     const summaryTitle = document.getElementById('login-error-title');
     const summaryBody = document.getElementById('login-error-body');
-
     const submitButton = form.querySelector('button[type="submit"]');
 
     form.addEventListener('submit', async (event) => {
@@ -250,14 +352,13 @@
           summary.hidden = false;
           return;
         }
-        password.value = '';
-        const name = result.profile ? result.profile.full_name : email.value;
-        Lepidus.toast({ title: 'Signed in', message: 'Welcome, ' + name + '.', variant: 'success' });
+        window.location.replace('/dashboard');
       } catch {
         summaryTitle.textContent = 'Sign-in failed';
         summaryBody.textContent = 'The server could not be reached. Try again.';
         summary.hidden = false;
       } finally {
+        password.value = '';
         submitButton.disabled = false;
       }
     });

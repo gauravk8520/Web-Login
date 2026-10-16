@@ -16,172 +16,318 @@
       letter-spacing: var(--typography-body-md-letterSpacing);
     }
 
-    .signup-page {
-      box-sizing: border-box;
+    .auth-layout {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-14) * 5)), 1fr));
       min-block-size: 100vh;
       min-block-size: 100svh;
-      place-items: center;
-      padding: calc(var(--space-14) + var(--space-13)) var(--space-8);
     }
 
-    .signup-content {
+    .auth-brand {
+      display: grid;
+      align-content: center;
+      gap: var(--space-10);
+      padding: calc(var(--space-14) + var(--space-9)) var(--space-12);
+      background: var(--color-brand-light);
+    }
+
+    .auth-brand__inner {
+      display: grid;
+      gap: var(--space-10);
+      max-inline-size: calc(var(--space-14) * 6);
+    }
+
+    .auth-brand__title {
+      margin: var(--space-0);
+      color: var(--color-text-brand);
+      font-size: var(--typography-heading-h2-fontSize);
+      line-height: var(--typography-heading-h2-lineHeight);
+      letter-spacing: var(--typography-heading-h2-letterSpacing);
+    }
+
+    .auth-brand__lead {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+      font-size: var(--typography-body-lg-fontSize);
+      line-height: var(--typography-body-lg-lineHeight);
+    }
+
+    .auth-brand__list {
+      display: grid;
+      gap: var(--space-8);
+      margin: var(--space-0);
+      padding: var(--space-0);
+      list-style: none;
+    }
+
+    .auth-brand__item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-6);
+    }
+
+    .auth-brand__tick {
+      flex: none;
+      inline-size: var(--space-9);
+      block-size: var(--space-9);
+      color: var(--color-text-brand);
+    }
+
+    .auth-panel {
+      display: grid;
+      place-items: center;
+      padding: calc(var(--space-14) + var(--space-9)) var(--space-9) var(--space-14);
+    }
+
+    .auth-content {
       display: grid;
       gap: var(--space-10);
       inline-size: 100%;
-      max-inline-size: calc(var(--space-14) * 7);
+      max-inline-size: calc(var(--space-14) * 6);
       min-inline-size: var(--space-0);
     }
 
-    .signup-heading {
+    .auth-heading {
       display: grid;
-      justify-items: center;
-      gap: var(--space-8);
-      text-align: center;
+      gap: var(--space-4);
     }
 
-    .signup-title {
+    .auth-title {
       margin: var(--space-0);
       font-size: var(--typography-heading-h1-fontSize);
       line-height: var(--typography-heading-h1-lineHeight);
       letter-spacing: var(--typography-heading-h1-letterSpacing);
     }
 
-    .signup-form {
+    .auth-subtitle {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+    }
+
+    .auth-form {
       display: grid;
       gap: var(--space-9);
     }
 
-    .signup-help {
+    .auth-help {
       margin: var(--space-0);
       color: var(--color-text-secondary);
       text-align: center;
     }
+
+    .theme-switcher {
+      position: absolute;
+      inset-block-start: var(--space-9);
+      inset-inline-end: var(--space-9);
+      inline-size: calc(var(--space-14) * 3);
+      max-inline-size: calc(100% - var(--space-12));
+    }
   </style>
 </head>
 <body>
-  <main class="signup-page">
-    <div class="signup-content">
-      <header class="signup-heading">
-        <img src="https://lepide-design-system.vercel.app/v1/brand/lepide-mark.svg" width="40" height="40" alt="Lepide">
-        <h1 class="signup-title">Create your account</h1>
-      </header>
+  <aside class="theme-switcher" aria-label="Appearance">
+    <div class="lp-dropdown lp-dropdown--full-width" id="theme-switcher" data-lp-dropdown="single">
+      <button class="lp-dropdown__trigger" type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Theme">
+        <span class="lp-dropdown__trigger-label">Light</span>
+        <svg class="lp-dropdown__chevron" viewBox="0 0 12 6" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 4 5-4"/></svg>
+      </button>
+      <div class="lp-dropdown__panel" hidden>
+        <div class="lp-dropdown__header">
+          <span class="lp-dropdown__header-label">Theme</span>
+          <svg class="lp-dropdown__chevron lp-dropdown__chevron--open" viewBox="0 0 12 6" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 4 5-4"/></svg>
+        </div>
+        <div class="lp-dropdown__list" role="listbox" aria-label="Theme">
+          <button class="lp-dropdown__option" type="button" role="option" data-value="light" aria-selected="true">
+            <span class="lp-dropdown__option-label">Light</span>
+          </button>
+          <button class="lp-dropdown__option" type="button" role="option" data-value="dark" aria-selected="false">
+            <span class="lp-dropdown__option-label">Dark</span>
+          </button>
+          <button class="lp-dropdown__option" type="button" role="option" data-value="hc" aria-selected="false">
+            <span class="lp-dropdown__option-label">High contrast</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
 
-      <!-- Hide the wrapper: the component's display rule must not override hidden. -->
-      <div id="signup-success" hidden>
-        <div class="lp-message lp-message--success" role="status">
-          <span class="lp-message__icon">
-            <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
-              <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
-              <path d="M14 23.5 20 29.5 31 17" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <div class="lp-message__content">
-            <div class="lp-message__text">
-              <h3 class="lp-message__title">Account created</h3>
-              <p class="lp-message__body" id="signup-success-body">You can now sign in.</p>
-            </div>
-            <div class="lp-message__actions">
-              <a class="lp-button lp-button--primary lp-button--sm" href="/login">Go to sign in</a>
+  <main class="auth-layout">
+    <section class="auth-brand" aria-labelledby="brand-title">
+      <div class="auth-brand__inner">
+        <img src="https://lepide-design-system.vercel.app/v1/brand/lepide-mark.svg" width="40" height="40" alt="Lepide">
+        <h2 class="auth-brand__title" id="brand-title">Get started with Lepide.</h2>
+        <p class="auth-brand__lead">Create your account to audit, monitor and protect your data.</p>
+        <ul class="auth-brand__list">
+          <li class="auth-brand__item">
+            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
+                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
+            <span>Set up in a few minutes</span>
+          </li>
+          <li class="auth-brand__item">
+            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
+                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
+            <span>Use your work email to sign in</span>
+          </li>
+          <li class="auth-brand__item">
+            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
+                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
+            <span>Choose a password of at least 8 characters</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-content">
+        <header class="auth-heading">
+          <h1 class="auth-title">Create your account</h1>
+          <p class="auth-subtitle">Tell us a little about you to get started.</p>
+        </header>
+
+        <!-- Hide the wrapper: the component's display rule must not override hidden. -->
+        <div id="signup-success" hidden>
+          <div class="lp-message lp-message--success" role="status">
+            <span class="lp-message__icon">
+              <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
+                <path d="M14 23.5 20 29.5 31 17" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div class="lp-message__content">
+              <div class="lp-message__text">
+                <h3 class="lp-message__title">Account created</h3>
+                <p class="lp-message__body" id="signup-success-body">You can now sign in.</p>
+              </div>
+              <div class="lp-message__actions">
+                <a class="lp-link lp-link--standalone" href="/login">Go to sign in</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div id="signup-card">
-      <div class="lp-card">
-        <div class="lp-card__body">
-          <form class="signup-form" id="signup-form" novalidate>
-            <div class="lp-input lp-input--full-width">
-              <div class="lp-input__row lp-input__row--label-top">
-                <label class="lp-input__label" for="full-name">Full name</label>
-                <div class="lp-input__field" id="full-name-field">
-                  <input class="lp-input__input" id="full-name" name="fullName" type="text" autocomplete="name"
-                         maxlength="120" required aria-invalid="false" aria-describedby="full-name-error">
+        <div id="signup-card">
+          <div class="lp-card lp-card--elevated lp-card--borderless">
+            <div class="lp-card__body">
+              <form class="auth-form" id="signup-form" novalidate>
+                <div class="lp-input lp-input--full-width">
+                  <div class="lp-input__row lp-input__row--label-top">
+                    <label class="lp-input__label" for="full-name">Full name</label>
+                    <div class="lp-input__field" id="full-name-field">
+                      <input class="lp-input__input" id="full-name" name="fullName" type="text" autocomplete="name"
+                             maxlength="120" required aria-invalid="false" aria-describedby="full-name-error">
+                    </div>
+                  </div>
+                  <div class="lp-input__message lp-input__message--error" id="full-name-error" hidden>Enter your full name.</div>
                 </div>
-              </div>
-              <div class="lp-input__message lp-input__message--error" id="full-name-error" hidden>Enter your full name.</div>
-            </div>
 
-            <div class="lp-input lp-input--full-width">
-              <div class="lp-input__row lp-input__row--label-top">
-                <label class="lp-input__label" for="email">Email</label>
-                <div class="lp-input__field" id="email-field">
-                  <input class="lp-input__input" id="email" name="email" type="email" autocomplete="email"
-                         maxlength="254" required aria-invalid="false" aria-describedby="email-hint">
+                <div class="lp-input lp-input--full-width">
+                  <div class="lp-input__row lp-input__row--label-top">
+                    <label class="lp-input__label" for="email">Email</label>
+                    <div class="lp-input__field" id="email-field">
+                      <input class="lp-input__input" id="email" name="email" type="email" autocomplete="email"
+                             maxlength="254" required aria-invalid="false" aria-describedby="email-hint">
+                    </div>
+                  </div>
+                  <div class="lp-input__message" id="email-hint">Use your work email</div>
+                  <div class="lp-input__message lp-input__message--error" id="email-error" hidden>Enter your email.</div>
                 </div>
-              </div>
-              <div class="lp-input__message" id="email-hint">Use your work email</div>
-              <div class="lp-input__message lp-input__message--error" id="email-error" hidden>Enter your email.</div>
-            </div>
 
-            <div class="lp-input lp-input--full-width">
-              <div class="lp-input__row lp-input__row--label-top">
-                <label class="lp-input__label" for="company">Company (optional)</label>
-                <div class="lp-input__field" id="company-field">
-                  <input class="lp-input__input" id="company" name="company" type="text" autocomplete="organization"
-                         maxlength="120" aria-invalid="false">
-                </div>
-              </div>
-            </div>
-
-            <div class="lp-input lp-input--full-width">
-              <div class="lp-input__row lp-input__row--label-top">
-                <label class="lp-input__label" for="password">Password</label>
-                <div class="lp-input__field" id="password-field">
-                  <input class="lp-input__input" id="password" name="password" type="password" autocomplete="new-password"
-                         minlength="8" maxlength="72" required aria-invalid="false" aria-describedby="password-hint">
-                </div>
-              </div>
-              <div class="lp-input__message" id="password-hint">At least 8 characters</div>
-              <div class="lp-input__message lp-input__message--error" id="password-error" hidden>Enter a password of at least 8 characters.</div>
-            </div>
-
-            <div class="lp-input lp-input--full-width">
-              <div class="lp-input__row lp-input__row--label-top">
-                <label class="lp-input__label" for="confirm-password">Confirm password</label>
-                <div class="lp-input__field" id="confirm-password-field">
-                  <input class="lp-input__input" id="confirm-password" name="confirmPassword" type="password"
-                         autocomplete="new-password" required aria-invalid="false" aria-describedby="confirm-password-error">
-                </div>
-              </div>
-              <div class="lp-input__message lp-input__message--error" id="confirm-password-error" hidden>Passwords do not match.</div>
-            </div>
-
-            <!-- Hide the wrapper: the component's display rule must not override hidden. -->
-            <div id="signup-error" hidden>
-              <div class="lp-message lp-message--error" role="alert">
-                <span class="lp-message__icon">
-                  <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
-                    <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
-                    <path d="M22.5 12 33 31.5H12L22.5 12Z" stroke="currentColor" stroke-width="2.4"
-                          stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M22.5 20v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                    <circle cx="22.5" cy="28.5" r="1.2" fill="currentColor"/>
-                  </svg>
-                </span>
-                <div class="lp-message__content">
-                  <div class="lp-message__text">
-                    <h3 class="lp-message__title" id="signup-error-title">Check your details</h3>
-                    <p class="lp-message__body" id="signup-error-body">Complete the required fields, then try again.</p>
+                <div class="lp-input lp-input--full-width">
+                  <div class="lp-input__row lp-input__row--label-top">
+                    <label class="lp-input__label" for="company">Company (optional)</label>
+                    <div class="lp-input__field" id="company-field">
+                      <input class="lp-input__input" id="company" name="company" type="text" autocomplete="organization"
+                             maxlength="120" aria-invalid="false">
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                <div class="lp-input lp-input--full-width">
+                  <div class="lp-input__row lp-input__row--label-top">
+                    <label class="lp-input__label" for="password">Password</label>
+                    <div class="lp-input__field" id="password-field">
+                      <input class="lp-input__input" id="password" name="password" type="password" autocomplete="new-password"
+                             minlength="8" maxlength="72" required aria-invalid="false" aria-describedby="password-hint">
+                    </div>
+                  </div>
+                  <div class="lp-input__message" id="password-hint">At least 8 characters</div>
+                  <div class="lp-input__message lp-input__message--error" id="password-error" hidden>Enter a password of at least 8 characters.</div>
+                </div>
+
+                <div class="lp-input lp-input--full-width">
+                  <div class="lp-input__row lp-input__row--label-top">
+                    <label class="lp-input__label" for="confirm-password">Confirm password</label>
+                    <div class="lp-input__field" id="confirm-password-field">
+                      <input class="lp-input__input" id="confirm-password" name="confirmPassword" type="password"
+                             autocomplete="new-password" required aria-invalid="false" aria-describedby="confirm-password-error">
+                    </div>
+                  </div>
+                  <div class="lp-input__message lp-input__message--error" id="confirm-password-error" hidden>Passwords do not match.</div>
+                </div>
+
+                <!-- Hide the wrapper: the component's display rule must not override hidden. -->
+                <div id="signup-error" hidden>
+                  <div class="lp-message lp-message--error" role="alert">
+                    <span class="lp-message__icon">
+                      <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
+                        <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
+                        <path d="M22.5 12 33 31.5H12L22.5 12Z" stroke="currentColor" stroke-width="2.4"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22.5 20v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                        <circle cx="22.5" cy="28.5" r="1.2" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    <div class="lp-message__content">
+                      <div class="lp-message__text">
+                        <h3 class="lp-message__title" id="signup-error-title">Check your details</h3>
+                        <p class="lp-message__body" id="signup-error-body">Complete the required fields, then try again.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="lp-button lp-button--primary lp-button--md lp-button--full-width" type="submit">Create account</button>
+              </form>
             </div>
-
-            <button class="lp-button lp-button--primary lp-button--md lp-button--full-width" type="submit">Create account</button>
-          </form>
+          </div>
         </div>
-      </div>
-      </div>
 
-      <p class="signup-help">Already have an account? <a class="lp-link" href="/login">Sign in</a></p>
-    </div>
+        <p class="auth-help">Already have an account? <a class="lp-link" href="/login">Sign in</a></p>
+      </div>
+    </section>
   </main>
 
   <script src="https://lepide-design-system.vercel.app/v1/lepidus.js" defer></script>
   <script>
+    const THEME_KEY = 'lp-theme';
+    const THEME_LABELS = { light: 'Light', dark: 'Dark', hc: 'High contrast' };
+    const themeSwitcher = document.getElementById('theme-switcher');
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      themeSwitcher.querySelector('.lp-dropdown__trigger-label').textContent = THEME_LABELS[theme];
+      themeSwitcher.querySelectorAll('[role="option"]').forEach((option) => {
+        option.setAttribute('aria-selected', String(option.dataset.value === theme));
+      });
+    }
+
+    try {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved in THEME_LABELS) applyTheme(saved);
+    } catch { /* storage unavailable: keep the default theme */ }
+
+    themeSwitcher.addEventListener('lp-dropdown-change', (event) => {
+      const theme = event.detail.option.dataset.value;
+      if (!(theme in THEME_LABELS)) {
+        throw new Error('Unsupported Lepidus theme: ' + theme);
+      }
+      applyTheme(theme);
+      try { localStorage.setItem(THEME_KEY, theme); } catch { /* preference not persisted */ }
+    });
+
     const form = document.getElementById('signup-form');
     const fullName = document.getElementById('full-name');
     const email = document.getElementById('email');

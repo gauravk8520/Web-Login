@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard – Lepide</title>
+  <link rel="stylesheet" href="https://lepide-design-system.vercel.app/v1/lepidus.css">
+  <style>
+    body {
+      margin: var(--space-0);
+      background: var(--color-background-page);
+      color: var(--color-text-primary);
+      font-family: var(--font-family-primary);
+      font-size: var(--typography-body-md-fontSize);
+      line-height: var(--typography-body-md-lineHeight);
+      letter-spacing: var(--typography-body-md-letterSpacing);
+    }
+
+    .app-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+      padding: var(--space-8) var(--space-10);
+      background: var(--color-background-surface);
+      border-block-end: var(--border-width-default) solid var(--color-border-default);
+    }
+
+    .app-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      font-size: var(--typography-heading-h5-fontSize);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-brand);
+    }
+
+    .app-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .theme-switcher {
+      inline-size: calc(var(--space-14) * 3);
+    }
+
+    .app-main {
+      display: grid;
+      gap: var(--space-10);
+      max-inline-size: calc(var(--space-14) * 16);
+      margin-inline: auto;
+      padding: var(--space-10);
+    }
+
+    .app-status {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+    }
+
+    .app-content {
+      display: grid;
+      gap: var(--space-10);
+    }
+
+    .welcome {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-9);
+    }
+
+    .welcome__text {
+      display: grid;
+      flex: 1;
+      gap: var(--space-2);
+      min-inline-size: var(--space-0);
+    }
+
+    .welcome__title {
+      margin: var(--space-0);
+      font-size: var(--typography-heading-h2-fontSize);
+      line-height: var(--typography-heading-h2-lineHeight);
+      letter-spacing: var(--typography-heading-h2-letterSpacing);
+    }
+
+    .welcome__email {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+      overflow-wrap: anywhere;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-14) * 5)), 1fr));
+      gap: var(--space-10);
+      align-items: start;
+    }
+
+    .app-note {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-brand">
+      <img src="https://lepide-design-system.vercel.app/v1/brand/lepide-mark.svg" width="40" height="40" alt="">
+      <span>Lepide</span>
+    </div>
+    <div class="app-actions">
+      <div class="theme-switcher">
+        <div class="lp-dropdown lp-dropdown--full-width" id="theme-switcher" data-lp-dropdown="single">
+          <button class="lp-dropdown__trigger" type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Theme">
+            <span class="lp-dropdown__trigger-label">Light</span>
+            <svg class="lp-dropdown__chevron" viewBox="0 0 12 6" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 4 5-4"/></svg>
+          </button>
+          <div class="lp-dropdown__panel" hidden>
+            <div class="lp-dropdown__header">
+              <span class="lp-dropdown__header-label">Theme</span>
+              <svg class="lp-dropdown__chevron lp-dropdown__chevron--open" viewBox="0 0 12 6" fill="none"
+                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 4 5-4"/></svg>
+            </div>
+            <div class="lp-dropdown__list" role="listbox" aria-label="Theme">
+              <button class="lp-dropdown__option" type="button" role="option" data-value="light" aria-selected="true">
+                <span class="lp-dropdown__option-label">Light</span>
+              </button>
+              <button class="lp-dropdown__option" type="button" role="option" data-value="dark" aria-selected="false">
+                <span class="lp-dropdown__option-label">Dark</span>
+              </button>
+              <button class="lp-dropdown__option" type="button" role="option" data-value="hc" aria-selected="false">
+                <span class="lp-dropdown__option-label">High contrast</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="lp-button lp-button--secondary lp-button--md" type="button" id="sign-out">Sign out</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <p class="app-status" id="loading" role="status">Loading your account…</p>
+
+    <!-- Hide the wrapper: the component's display rule must not override hidden. -->
+    <div id="page-error" hidden>
+      <div class="lp-message lp-message--error" role="alert">
+        <span class="lp-message__icon">
+          <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
+            <path d="M22.5 12 33 31.5H12L22.5 12Z" stroke="currentColor" stroke-width="2.4"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22.5 20v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="22.5" cy="28.5" r="1.2" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="lp-message__content">
+          <div class="lp-message__text">
+            <h3 class="lp-message__title" id="page-error-title">Something went wrong</h3>
+            <p class="lp-message__body" id="page-error-body">Try again.</p>
+          </div>
+          <div class="lp-message__actions">
+            <a class="lp-link lp-link--standalone" href="/login">Back to sign in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-content" id="content" hidden>
+      <div class="lp-card lp-card--elevated lp-card--borderless">
+        <div class="lp-card__body">
+          <div class="welcome">
+            <span class="lp-avatar lp-avatar--xl lp-avatar--circle lp-avatar--series1" id="avatar" role="img" aria-label="Your account">
+              <span class="lp-avatar__fallback" id="avatar-initials" aria-hidden="true"></span>
+            </span>
+            <div class="welcome__text">
+              <h1 class="welcome__title" id="welcome-title">Welcome</h1>
+              <p class="welcome__email" id="welcome-email"></p>
+            </div>
+            <span class="lp-badge lp-badge--success"><span class="lp-badge__dot"></span>Signed in</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-grid">
+        <div class="lp-card">
+          <div class="lp-card__header">
+            <div class="lp-card__title">Account details</div>
+          </div>
+          <div class="lp-card__body">
+            <div class="lp-table">
+              <table class="lp-table__table">
+                <caption style="position: absolute; clip: rect(0 0 0 0)">Account details</caption>
+                <thead>
+                  <tr>
+                    <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">Detail</span></div></th>
+                    <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">Value</span></div></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="lp-table__td"><div class="lp-table__cell-inner"><span class="lp-table__cell-text">Name</span></div></td>
+                    <td class="lp-table__td"><div class="lp-table__cell-inner"><span class="lp-table__cell-text" id="detail-name"></span></div></td>
+                  </tr>
+                  <tr>
+                    <td class="lp-table__td"><div class="lp-table__cell-inner"><span class="lp-table__cell-text">Email</span></div></td>
+                    <td class="lp-table__td"><div class="lp-table__cell-inner"><span class="lp-table__cell-text" id="detail-email"></span></div></td>
+                  </tr>
+                  <tr>
+                    <td class="lp-table__td"><div class="lp-table__cell-inner"><span class="lp-table__cell-text">Company</span></div></td>
+                    <td class="lp-table__td"><div class="lp-table__cell-inner"><span class="lp-table__cell-text" id="detail-company"></span></div></td>
+                  </tr>
+                  <tr>
+                    <td class="lp-table__td"><div class="lp-table__cell-inner"><span class="lp-table__cell-text">Member since</span></div></td>
+                    <td class="lp-table__td"><div class="lp-table__cell-inner"><span class="lp-table__cell-text" id="detail-created"></span></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="lp-card">
+          <div class="lp-card__header">
+            <div class="lp-card__title">Your session</div>
+          </div>
+          <div class="lp-card__body">
+            <p class="app-note" id="session-note">Use Sign out when you finish on a shared computer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://lepide-design-system.vercel.app/v1/lepidus.js" defer></script>
+  <script>
+    const THEME_KEY = 'lp-theme';
+    const THEME_LABELS = { light: 'Light', dark: 'Dark', hc: 'High contrast' };
+    const themeSwitcher = document.getElementById('theme-switcher');
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      themeSwitcher.querySelector('.lp-dropdown__trigger-label').textContent = THEME_LABELS[theme];
+      themeSwitcher.querySelectorAll('[role="option"]').forEach((option) => {
+        option.setAttribute('aria-selected', String(option.dataset.value === theme));
+      });
+    }
+
+    try {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved in THEME_LABELS) applyTheme(saved);
+    } catch { /* storage unavailable: keep the default theme */ }
+
+    themeSwitcher.addEventListener('lp-dropdown-change', (event) => {
+      const theme = event.detail.option.dataset.value;
+      if (!(theme in THEME_LABELS)) {
+        throw new Error('Unsupported Lepidus theme: ' + theme);
+      }
+      applyTheme(theme);
+      try { localStorage.setItem(THEME_KEY, theme); } catch { /* preference not persisted */ }
+    });
+
+    const loading = document.getElementById('loading');
+    const content = document.getElementById('content');
+    const pageError = document.getElementById('page-error');
+
+    function showError(title, body) {
+      loading.hidden = true;
+      document.getElementById('page-error-title').textContent = title;
+      document.getElementById('page-error-body').textContent = body;
+      pageError.hidden = false;
+    }
+
+    function initials(name, email) {
+      const words = name.split(/\s+/).filter(Boolean);
+      const letters = words.length > 1
+        ? words[0][0] + words[words.length - 1][0]
+        : (words[0] || email).slice(0, 2);
+      return letters.toUpperCase();
+    }
+
+    function render(profile) {
+      const name = profile.full_name || profile.email;
+      const created = new Date(profile.created_at);
+      document.title = 'Dashboard – Lepide';
+      document.getElementById('welcome-title').textContent = 'Welcome, ' + name.split(/\s+/)[0];
+      document.getElementById('welcome-email').textContent = profile.email;
+      document.getElementById('avatar').setAttribute('aria-label', name);
+      document.getElementById('avatar-initials').textContent = initials(profile.full_name || '', profile.email);
+      document.getElementById('detail-name').textContent = name;
+      document.getElementById('detail-email').textContent = profile.email;
+      document.getElementById('detail-company').textContent = profile.company || 'Not provided';
+      document.getElementById('detail-created').textContent = Number.isNaN(created.getTime())
+        ? 'Unknown'
+        : created.toLocaleDateString(undefined, { dateStyle: 'long' });
+      loading.hidden = true;
+      content.hidden = false;
+    }
+
+    async function loadProfile() {
+      try {
+        const response = await fetch('/api/me');
+        if (response.status === 401) {
+          window.location.replace('/login');
+          return;
+        }
+        const result = await response.json();
+        if (!response.ok) {
+          showError('Account not loaded', result.error);
+          return;
+        }
+        render(result.profile);
+      } catch {
+        showError('Account not loaded', 'The server could not be reached. Reload the page to try again.');
+      }
+    }
+
+    const signOut = document.getElementById('sign-out');
+    signOut.addEventListener('click', async () => {
+      signOut.disabled = true;
+      try {
+        const response = await fetch('/api/logout', { method: 'POST' });
+        if (!response.ok) throw new Error('Sign-out failed');
+        window.location.replace('/login');
+      } catch {
+        showError('Sign-out failed', 'You are still signed in. Try again.');
+        signOut.disabled = false;
+      }
+    });
+
+    loadProfile();
+  </script>
+</body>
+</html>
