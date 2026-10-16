@@ -50,7 +50,7 @@
     .app-main {
       display: grid;
       gap: var(--space-10);
-      max-inline-size: calc(var(--space-14) * 16);
+      max-inline-size: calc(var(--space-14) * 20);
       margin-inline: auto;
       padding: var(--space-10);
     }
@@ -102,6 +102,226 @@
     .app-note {
       margin: var(--space-0);
       color: var(--color-text-secondary);
+    }
+
+    .visually-hidden {
+      position: absolute;
+      inline-size: var(--space-20);
+      block-size: var(--space-20);
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .stack {
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+    }
+
+    .section-head__text {
+      display: grid;
+      gap: var(--space-1);
+    }
+
+    .section-title {
+      margin: var(--space-0);
+      font-size: var(--typography-heading-h4-fontSize);
+      line-height: var(--typography-heading-h4-lineHeight);
+    }
+
+    .muted {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+      font-size: var(--typography-body-sm-fontSize);
+      line-height: var(--typography-body-sm-lineHeight);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .range-picker {
+      inline-size: calc(var(--space-14) * 3);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-14) * 4)), 1fr));
+      gap: var(--space-9);
+    }
+
+    .kpi {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .kpi__head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .kpi__icon {
+      display: grid;
+      flex: none;
+      place-items: center;
+      inline-size: var(--space-12);
+      block-size: var(--space-12);
+      border-radius: var(--radius-m);
+      background: var(--color-brand-light);
+      color: var(--color-text-brand);
+    }
+
+    .kpi__icon svg {
+      inline-size: var(--space-9);
+      block-size: var(--space-9);
+    }
+
+    .kpi__value {
+      margin: var(--space-0);
+      font-size: var(--typography-heading-h1-fontSize);
+      line-height: var(--typography-heading-h1-lineHeight);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .kpi__delta {
+      justify-self: start;
+    }
+
+    .widget-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-14) * 5)), 1fr));
+      gap: var(--space-10);
+      align-items: start;
+    }
+
+    .series-ad { --series: var(--color-chart-series-4); }
+    .series-fs { --series: var(--color-chart-series-5); }
+    .series-m365 { --series: var(--color-chart-series-3); }
+
+    .chart {
+      display: block;
+      inline-size: 100%;
+    }
+
+    .chart text {
+      fill: var(--color-text-secondary);
+      font-family: var(--font-family-primary);
+      font-size: var(--typography-body-sm-fontSize);
+    }
+
+    .chart__grid {
+      stroke: var(--color-chart-grid);
+      stroke-dasharray: 4 4;
+    }
+
+    .chart__bar {
+      fill: var(--series);
+    }
+
+    .chart__bar:hover {
+      stroke: var(--color-text-primary);
+      stroke-width: var(--space-20);
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6) var(--space-10);
+      margin: var(--space-0);
+      padding: var(--space-0);
+      list-style: none;
+    }
+
+    .chart-legend--stacked {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .chart-legend__item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .chart-legend__swatch {
+      flex: none;
+      inline-size: var(--space-6);
+      block-size: var(--space-6);
+      border-radius: var(--radius-2xs);
+      background: var(--series);
+    }
+
+    .chart-legend__value {
+      color: var(--color-text-secondary);
+    }
+
+    .donut-layout {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-10);
+    }
+
+    .donut {
+      flex: none;
+      inline-size: calc(var(--space-14) * 2.5);
+      block-size: calc(var(--space-14) * 2.5);
+    }
+
+    .donut__track {
+      fill: none;
+      stroke: var(--color-chart-grid-subtle);
+    }
+
+    .donut__segment {
+      fill: none;
+      stroke: var(--series);
+    }
+
+    .donut .donut__total {
+      fill: var(--color-text-primary);
+      font-size: var(--typography-heading-h5-fontSize);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    .cell-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .pref-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+    }
+
+    .pref-row__text {
+      display: grid;
+      gap: var(--space-1);
+    }
+
+    .pref-row__label {
+      font-weight: var(--font-weight-semibold);
     }
   </style>
 </head>
@@ -186,6 +406,229 @@
         </div>
       </div>
 
+      <!-- Hide the wrapper: the component's display rule must not override hidden. -->
+      <div id="sample-note">
+        <div class="lp-message lp-message--info" role="status">
+          <span class="lp-message__icon">
+            <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
+              <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
+              <path d="M22.5 20v11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="22.5" cy="14.5" r="1.4" fill="currentColor"/>
+            </svg>
+          </span>
+          <div class="lp-message__content">
+            <div class="lp-message__text">
+              <h3 class="lp-message__title">You're viewing sample data</h3>
+              <p class="lp-message__body">These figures show how your dashboard will look. Connect Active Directory, file servers or Microsoft 365 to see live activity.</p>
+            </div>
+          </div>
+          <button class="lp-message__close" type="button" id="sample-note-close" aria-label="Dismiss sample data notice">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <section class="stack" aria-labelledby="overview-title">
+        <div class="section-head">
+          <div class="section-head__text">
+            <h2 class="section-title" id="overview-title">Security overview</h2>
+            <p class="muted" id="updated-at" aria-live="polite"></p>
+          </div>
+          <div class="toolbar">
+            <div class="range-picker">
+              <div class="lp-dropdown lp-dropdown--full-width" id="range-picker" data-lp-dropdown="single">
+                <button class="lp-dropdown__trigger" type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Time range">
+                  <span class="lp-dropdown__trigger-label">Last 7 days</span>
+                  <svg class="lp-dropdown__chevron" viewBox="0 0 12 6" fill="none" stroke="currentColor"
+                       stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 4 5-4"/></svg>
+                </button>
+                <div class="lp-dropdown__panel" hidden>
+                  <div class="lp-dropdown__header">
+                    <span class="lp-dropdown__header-label">Time range</span>
+                    <svg class="lp-dropdown__chevron lp-dropdown__chevron--open" viewBox="0 0 12 6" fill="none"
+                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 4 5-4"/></svg>
+                  </div>
+                  <div class="lp-dropdown__list" role="listbox" aria-label="Time range">
+                    <button class="lp-dropdown__option" type="button" role="option" data-value="24h" aria-selected="false">
+                      <span class="lp-dropdown__option-label">Last 24 hours</span>
+                    </button>
+                    <button class="lp-dropdown__option" type="button" role="option" data-value="7d" aria-selected="true">
+                      <span class="lp-dropdown__option-label">Last 7 days</span>
+                    </button>
+                    <button class="lp-dropdown__option" type="button" role="option" data-value="30d" aria-selected="false">
+                      <span class="lp-dropdown__option-label">Last 30 days</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="lp-button lp-button--secondary lp-button--md" type="button" id="refresh"
+                    data-lp-tooltip="Reload the latest figures">Refresh</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="lp-card lp-card--elevated lp-card--borderless">
+            <div class="lp-card__body kpi">
+              <div class="kpi__head">
+                <span class="kpi__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </span>
+                <span>Total changes</span>
+              </div>
+              <p class="kpi__value" id="kpi-changes">–</p>
+              <span class="kpi__delta" id="kpi-changes-delta"></span>
+              <p class="muted">All audited changes across your sources.</p>
+            </div>
+          </div>
+          <div class="lp-card lp-card--elevated lp-card--borderless">
+            <div class="lp-card__body kpi">
+              <div class="kpi__head">
+                <span class="kpi__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="M12 8v4M12 16h.01"/></svg>
+                </span>
+                <span>Critical alerts</span>
+              </div>
+              <p class="kpi__value" id="kpi-critical">–</p>
+              <span class="kpi__delta" id="kpi-critical-delta"></span>
+              <p class="muted">Threats that need investigation.</p>
+            </div>
+          </div>
+          <div class="lp-card lp-card--elevated lp-card--borderless">
+            <div class="lp-card__body kpi">
+              <div class="kpi__head">
+                <span class="kpi__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4M12 15v2"/></svg>
+                </span>
+                <span>Failed logons</span>
+              </div>
+              <p class="kpi__value" id="kpi-failed">–</p>
+              <span class="kpi__delta" id="kpi-failed-delta"></span>
+              <p class="muted">Unsuccessful sign-in attempts.</p>
+            </div>
+          </div>
+          <div class="lp-card lp-card--elevated lp-card--borderless">
+            <div class="lp-card__body kpi">
+              <div class="kpi__head">
+                <span class="kpi__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M12 11v3M12 17h.01"/></svg>
+                </span>
+                <span>Over-exposed folders</span>
+              </div>
+              <p class="kpi__value" id="kpi-exposed">–</p>
+              <span class="kpi__delta" id="kpi-exposed-delta"></span>
+              <p class="muted">Folders open to everyone or too many users.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- System gap: Lepidus charts are React-only, so these are SVG renditions bound to the --color-chart-* tokens. -->
+      <div class="lp-card">
+        <div class="lp-card__header">
+          <div class="lp-card__title">Activity trend</div>
+        </div>
+        <div class="lp-card__body stack">
+          <p class="muted" id="trend-summary"></p>
+          <div id="trend-chart"></div>
+          <ul class="chart-legend" aria-label="Sources">
+            <li class="chart-legend__item series-ad"><span class="chart-legend__swatch"></span>Active Directory</li>
+            <li class="chart-legend__item series-fs"><span class="chart-legend__swatch"></span>File Server</li>
+            <li class="chart-legend__item series-m365"><span class="chart-legend__swatch"></span>Microsoft 365</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="widget-grid">
+        <div class="lp-alert-panel" role="alert">
+          <span class="lp-alert-panel__icon" style="color: var(--color-status-error-text, #f72b2b);">
+            <svg viewBox="0 0 92 85" fill="none" aria-hidden="true">
+              <path d="M46 6 L88 79 H4 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+              <path d="M46 32v24" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="46" cy="66" r="3.5" fill="currentColor"/>
+            </svg>
+          </span>
+          <h3 class="lp-alert-panel__headline">Attention!</h3>
+          <p class="lp-alert-panel__title">Mass file deletion</p>
+          <p class="lp-alert-panel__summary">
+            <strong>418 files</strong> were deleted from <strong>\\FS-01\Finance</strong> by
+            <strong>j.doe</strong> within 4 minutes.
+          </p>
+          <div class="lp-alert-panel__action">
+            <button class="lp-button lp-button--primary lp-button--md" type="button" id="investigate">Investigate</button>
+          </div>
+          <p class="lp-alert-panel__footnote">Detected 12 minutes ago on WS-FIN-07</p>
+        </div>
+
+        <div class="lp-card">
+          <div class="lp-card__header">
+            <div class="lp-card__title">Changes by source</div>
+          </div>
+          <div class="lp-card__body stack" id="source-breakdown"></div>
+        </div>
+
+        <div class="lp-card">
+          <div class="lp-card__header">
+            <div class="lp-card__title">Compliance readiness</div>
+          </div>
+          <div class="lp-card__body stack" id="compliance"></div>
+        </div>
+      </div>
+
+          <div class="lp-card">
+            <div class="lp-card__header">
+              <div class="lp-card__title">Recent activity</div>
+            </div>
+            <div class="lp-card__body stack">
+              <div class="lp-tabs" role="tablist" aria-label="Filter activity by source" id="source-tabs" data-lp-tabs>
+                <button class="lp-tabs__tab lp-tabs__tab--active" role="tab" aria-selected="true" id="tab-all" data-source="all">All</button>
+                <button class="lp-tabs__tab" role="tab" aria-selected="false" id="tab-ad" data-source="ad" tabindex="-1">Active Directory</button>
+                <button class="lp-tabs__tab" role="tab" aria-selected="false" id="tab-fs" data-source="fs" tabindex="-1">File Server</button>
+                <button class="lp-tabs__tab" role="tab" aria-selected="false" id="tab-m365" data-source="m365" tabindex="-1">Microsoft 365</button>
+              </div>
+
+              <div class="lp-input lp-input--full-width">
+                <div class="lp-input__row lp-input__row--label-top">
+                  <label class="lp-input__label" for="activity-search">Search activity</label>
+                  <div class="lp-input__field">
+                    <span class="lp-input__icon-left">
+                      <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"
+                           stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="M12.5 12.5 16 16"/></svg>
+                    </span>
+                    <input class="lp-input__input" id="activity-search" type="search" placeholder="User, action or object" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+
+              <p class="muted" id="activity-count" aria-live="polite"></p>
+
+              <div class="table-scroll">
+                <div class="lp-table">
+                  <table class="lp-table__table">
+                    <caption class="visually-hidden">Recent activity</caption>
+                    <thead>
+                      <tr>
+                        <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">When</span></div></th>
+                        <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">User</span></div></th>
+                        <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">Action</span></div></th>
+                        <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">Object</span></div></th>
+                        <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">Source</span></div></th>
+                        <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">Severity</span></div></th>
+                        <th class="lp-table__th" scope="col"><div class="lp-table__header-inner"><span class="lp-table__header-label">Details</span></div></th>
+                      </tr>
+                    </thead>
+                    <tbody id="activity-rows"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
       <div class="app-grid">
         <div class="lp-card">
           <div class="lp-card__header">
@@ -226,15 +669,55 @@
 
         <div class="lp-card">
           <div class="lp-card__header">
-            <div class="lp-card__title">Your session</div>
+            <div class="lp-card__title">Alert preferences</div>
           </div>
-          <div class="lp-card__body">
+          <div class="lp-card__body stack">
+            <div class="pref-row">
+              <div class="pref-row__text">
+                <span class="pref-row__label" id="pref-critical-label">Email me about critical alerts</span>
+                <span class="muted">Sent as soon as a critical threat is detected.</span>
+              </div>
+              <button class="lp-toggle lp-toggle--on" type="button" role="switch" aria-checked="true"
+                      aria-labelledby="pref-critical-label" data-pref="criticalEmail">
+                <span class="lp-toggle__thumb"></span>
+              </button>
+            </div>
+            <div class="pref-row">
+              <div class="pref-row__text">
+                <span class="pref-row__label" id="pref-weekly-label">Weekly summary report</span>
+                <span class="muted">A digest of changes every Monday morning.</span>
+              </div>
+              <button class="lp-toggle" type="button" role="switch" aria-checked="false"
+                      aria-labelledby="pref-weekly-label" data-pref="weeklySummary">
+                <span class="lp-toggle__thumb"></span>
+              </button>
+            </div>
             <p class="app-note" id="session-note">Use Sign out when you finish on a shared computer.</p>
           </div>
         </div>
       </div>
     </div>
   </main>
+
+  <div class="lp-modal" id="event-modal" hidden>
+    <div class="lp-modal__shell lp-modal__shell--lg" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+      <div class="lp-modal__header lp-modal__header--center">
+        <h2 class="lp-modal__title" id="event-modal-title">Event details</h2>
+      </div>
+      <div class="lp-modal__body">
+        <div class="lp-table">
+          <table class="lp-table__table">
+            <caption class="visually-hidden">Event details</caption>
+            <tbody id="event-details"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="lp-modal__footer">
+        <button class="lp-button lp-button--secondary lp-button--md" type="button" data-lp-modal-close>Close</button>
+        <button class="lp-button lp-button--primary lp-button--md" type="button" id="mark-reviewed" data-lp-autofocus>Mark as reviewed</button>
+      </div>
+    </div>
+  </div>
 
   <script src="https://lepide-design-system.vercel.app/v1/lepidus.js" defer></script>
   <script>
@@ -287,8 +770,10 @@
       const name = profile.full_name || profile.email;
       const created = new Date(profile.created_at);
       document.title = 'Dashboard – Lepide';
-      document.getElementById('welcome-title').textContent = 'Welcome, ' + name.split(/\s+/)[0];
-      document.getElementById('welcome-email').textContent = profile.email;
+      document.getElementById('welcome-title').textContent = greeting() + ', ' + name.split(/\s+/)[0];
+      document.getElementById('welcome-email').textContent = profile.company
+        ? profile.email + ' · ' + profile.company
+        : profile.email;
       document.getElementById('avatar').setAttribute('aria-label', name);
       document.getElementById('avatar-initials').textContent = initials(profile.full_name || '', profile.email);
       document.getElementById('detail-name').textContent = name;
@@ -299,6 +784,14 @@
         : created.toLocaleDateString(undefined, { dateStyle: 'long' });
       loading.hidden = true;
       content.hidden = false;
+      renderDashboard();
+    }
+
+    function greeting() {
+      const hour = new Date().getHours();
+      if (hour < 12) return 'Good morning';
+      if (hour < 18) return 'Good afternoon';
+      return 'Good evening';
     }
 
     async function loadProfile() {
@@ -330,6 +823,413 @@
         showError('Sign-out failed', 'You are still signed in. Try again.');
         signOut.disabled = false;
       }
+    });
+
+    // ----- Dashboard (sample data until a real audit source is connected) -----
+    const SOURCES = { ad: 'Active Directory', fs: 'File Server', m365: 'Microsoft 365' };
+    const SEVERITY_BADGE = { Critical: 'error', Warning: 'warning', Info: 'default' };
+    const RANGES = {
+      '24h': {
+        label: 'last 24 hours', minutes: 1440,
+        kpis: { changes: [1284, 1140], critical: [3, 5], failed: [47, 39], exposed: [312, 318] },
+        sources: { ad: 512, fs: 498, m365: 274 },
+      },
+      '7d': {
+        label: 'last 7 days', minutes: 10080,
+        kpis: { changes: [8932, 8410], critical: [14, 11], failed: [286, 301], exposed: [312, 327] },
+        sources: { ad: 3410, fs: 3902, m365: 1620 },
+      },
+      '30d': {
+        label: 'last 30 days', minutes: 43200,
+        kpis: { changes: [37410, 35980], critical: [52, 61], failed: [1190, 1254], exposed: [312, 356] },
+        sources: { ad: 14120, fs: 16050, m365: 7240 },
+      },
+    };
+    const COMPLIANCE = [['GDPR', 92], ['HIPAA', 84], ['SOX', 100], ['PCI DSS', 76]];
+    const EVENTS = [
+      { id: 1, minutesAgo: 12, user: 'j.doe', action: 'Deleted 418 files', object: '\\\\FS-01\\Finance\\2026', source: 'fs', severity: 'Critical', host: 'WS-FIN-07', ip: '10.0.4.27' },
+      { id: 2, minutesAgo: 38, user: 'a.khan', action: 'Added member to Domain Admins', object: 'CN=Domain Admins', source: 'ad', severity: 'Critical', host: 'DC-01', ip: '10.0.1.5' },
+      { id: 3, minutesAgo: 75, user: 'm.lee', action: 'Shared file externally', object: 'Q3 Forecast.xlsx', source: 'm365', severity: 'Warning', host: 'SharePoint Online', ip: '52.12.8.140' },
+      { id: 4, minutesAgo: 140, user: 's.patel', action: 'Failed logon (5 attempts)', object: 'svc-backup', source: 'ad', severity: 'Warning', host: 'DC-02', ip: '10.0.1.6' },
+      { id: 5, minutesAgo: 220, user: 'r.gomez', action: 'Modified permissions', object: '\\\\FS-02\\HR\\Payroll', source: 'fs', severity: 'Warning', host: 'WS-HR-02', ip: '10.0.5.14' },
+      { id: 6, minutesAgo: 380, user: 'e.wong', action: 'Reset password', object: 't.nguyen', source: 'ad', severity: 'Info', host: 'DC-01', ip: '10.0.1.5' },
+      { id: 7, minutesAgo: 610, user: 'l.smith', action: 'Created mail forwarding rule', object: 'l.smith@contoso.com', source: 'm365', severity: 'Warning', host: 'Exchange Online', ip: '40.97.3.22' },
+      { id: 8, minutesAgo: 900, user: 'k.brown', action: 'Renamed folder', object: '\\\\FS-01\\Projects\\Apollo', source: 'fs', severity: 'Info', host: 'WS-ENG-11', ip: '10.0.6.30' },
+      { id: 9, minutesAgo: 1300, user: 'svc-sync', action: 'Created user account', object: 'CN=c.ross', source: 'ad', severity: 'Info', host: 'DC-02', ip: '10.0.1.6' },
+      { id: 10, minutesAgo: 2100, user: 'p.ivanov', action: 'Downloaded 120 files', object: 'Legal Contracts library', source: 'm365', severity: 'Warning', host: 'SharePoint Online', ip: '52.12.8.141' },
+      { id: 11, minutesAgo: 3600, user: 'j.doe', action: 'Copied 2,310 files', object: '\\\\FS-01\\Finance', source: 'fs', severity: 'Critical', host: 'WS-FIN-07', ip: '10.0.4.27' },
+      { id: 12, minutesAgo: 5200, user: 'a.khan', action: 'Disabled account', object: 'CN=old.admin', source: 'ad', severity: 'Info', host: 'DC-01', ip: '10.0.1.5' },
+      { id: 13, minutesAgo: 7400, user: 'm.lee', action: 'Changed team owner', object: 'Team: Sales EMEA', source: 'm365', severity: 'Info', host: 'Microsoft Teams', ip: '52.112.0.18' },
+      { id: 14, minutesAgo: 9100, user: 'unknown', action: 'Failed logon (23 attempts)', object: 'administrator', source: 'ad', severity: 'Critical', host: 'DC-02', ip: '185.220.101.4' },
+      { id: 15, minutesAgo: 15000, user: 'r.gomez', action: 'Deleted folder', object: '\\\\FS-02\\Archive\\2019', source: 'fs', severity: 'Warning', host: 'WS-HR-02', ip: '10.0.5.14' },
+      { id: 16, minutesAgo: 21000, user: 'e.wong', action: 'Changed group policy', object: 'GPO: Workstation Lockdown', source: 'ad', severity: 'Warning', host: 'DC-01', ip: '10.0.1.5' },
+      { id: 17, minutesAgo: 28000, user: 'l.smith', action: 'Granted mailbox access', object: 'ceo@contoso.com', source: 'm365', severity: 'Critical', host: 'Exchange Online', ip: '40.97.3.22' },
+      { id: 18, minutesAgo: 33000, user: 'k.brown', action: 'Modified file', object: 'Budget 2027.xlsx', source: 'fs', severity: 'Info', host: 'WS-ENG-11', ip: '10.0.6.30' },
+    ];
+
+    function readStore(key, fallback) {
+      try {
+        const value = JSON.parse(localStorage.getItem(key));
+        return value === null ? fallback : value;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function writeStore(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* not persisted */ }
+    }
+
+    function toast(options) {
+      if (window.Lepidus) Lepidus.toast(options);
+    }
+
+    const state = {
+      range: '7d',
+      source: 'all',
+      query: '',
+      reviewed: new Set(readStore('lp-reviewed', [])),
+      loadedAt: new Date(),
+      current: null,
+    };
+
+    function el(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    }
+
+    function badge(variant, text) {
+      const node = el('span', 'lp-badge lp-badge--' + variant);
+      node.append(el('span', 'lp-badge__dot'), text);
+      return node;
+    }
+
+    function cell(content) {
+      const td = el('td', 'lp-table__td');
+      const inner = el('div', 'lp-table__cell-inner');
+      inner.append(typeof content === 'string' ? el('span', 'lp-table__cell-text', content) : content);
+      td.append(inner);
+      return td;
+    }
+
+    function ago(minutes) {
+      if (minutes < 60) return minutes + ' min ago';
+      if (minutes < 1440) return Math.round(minutes / 60) + ' h ago';
+      return Math.round(minutes / 1440) + ' d ago';
+    }
+
+    function eventDate(event) {
+      return new Date(state.loadedAt.getTime() - event.minutesAgo * 60000);
+    }
+
+    function renderKpis() {
+      const { kpis } = RANGES[state.range];
+      const higherIsBad = { changes: false, critical: true, failed: true, exposed: true };
+      Object.entries(kpis).forEach(([key, [current, previous]]) => {
+        document.getElementById('kpi-' + key).textContent = current.toLocaleString();
+        const change = Math.round(((current - previous) / previous) * 100);
+        const direction = change > 0 ? 'Up' : change < 0 ? 'Down' : 'No change';
+        const variant = !higherIsBad[key] || change === 0 ? 'neutral' : change > 0 ? 'warning' : 'success';
+        const label = change === 0 ? 'No change vs previous period' : direction + ' ' + Math.abs(change) + '% vs previous period';
+        document.getElementById('kpi-' + key + '-delta').replaceChildren(badge(variant, label));
+      });
+    }
+
+    function progress(label, percent, valueText, completed) {
+      const wrap = el('div', 'lp-progress lp-progress--full-width' + (completed ? ' lp-progress--completed' : ''));
+      const row = el('div', 'lp-progress__row');
+      const track = el('div', 'lp-progress__track');
+      track.setAttribute('role', 'progressbar');
+      track.setAttribute('aria-valuemin', '0');
+      track.setAttribute('aria-valuemax', '100');
+      track.setAttribute('aria-valuenow', String(percent));
+      track.setAttribute('aria-label', label);
+      const fill = el('div', 'lp-progress__fill');
+      fill.style.width = percent + '%';
+      track.append(fill);
+      row.append(track, el('span', 'lp-progress__value', valueText));
+      wrap.append(el('span', 'lp-progress__label', label), row);
+      return wrap;
+    }
+
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+
+    function svg(tag, attrs, text) {
+      const node = document.createElementNS(SVG_NS, tag);
+      Object.entries(attrs || {}).forEach(([key, value]) => node.setAttribute(key, value));
+      if (text !== undefined) node.textContent = text;
+      return node;
+    }
+
+    // Deterministic pseudo-random weights so the sample chart is stable between renders.
+    function weight(seed) {
+      const x = Math.sin(seed * 12.9898) * 43758.5453;
+      return 0.6 + (x - Math.floor(x)) * 0.8;
+    }
+
+    function trendBuckets() {
+      const { sources } = RANGES[state.range];
+      const now = state.loadedAt;
+      const spec = {
+        '24h': { count: 12, stepMs: 7200000, label: (d) => d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) },
+        '7d': { count: 7, stepMs: 86400000, label: (d) => d.toLocaleDateString(undefined, { weekday: 'short' }) },
+        '30d': { count: 30, stepMs: 86400000, label: (d) => d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' }) },
+      }[state.range];
+      const buckets = Array.from({ length: spec.count }, (_, i) => ({
+        label: spec.label(new Date(now.getTime() - (spec.count - 1 - i) * spec.stepMs)),
+        values: {},
+      }));
+      Object.entries(sources).forEach(([key, total], s) => {
+        const weights = buckets.map((_, i) => weight(i + s * 97 + spec.count) * (key === 'fs' && i === spec.count - 1 ? 1.8 : 1));
+        const sum = weights.reduce((a, b) => a + b, 0);
+        buckets.forEach((bucket, i) => { bucket.values[key] = Math.round((total * weights[i]) / sum); });
+      });
+      return buckets;
+    }
+
+    function niceMax(value) {
+      const rawStep = value / 4;
+      const magnitude = 10 ** Math.floor(Math.log10(rawStep));
+      const norm = rawStep / magnitude;
+      const step = (norm <= 1 ? 1 : norm <= 2 ? 2 : norm <= 2.5 ? 2.5 : norm <= 5 ? 5 : 10) * magnitude;
+      return step * 4;
+    }
+
+    function renderTrend() {
+      const buckets = trendBuckets();
+      const totals = buckets.map((b) => Object.values(b.values).reduce((a, v) => a + v, 0));
+      const max = niceMax(Math.max(...totals));
+      const width = 800, height = 260, left = 52, right = 8, top = 12, bottom = 32;
+      const plotW = width - left - right, plotH = height - top - bottom;
+      const slot = plotW / buckets.length;
+      const barW = Math.min(36, slot * 0.6);
+      const busiest = totals.indexOf(Math.max(...totals));
+
+      const chart = svg('svg', {
+        class: 'chart', viewBox: `0 0 ${width} ${height}`, role: 'img',
+        'aria-label': `Stacked column chart of changes per period by source for the ${RANGES[state.range].label}. ` +
+          `Busiest period: ${buckets[busiest].label} with ${totals[busiest].toLocaleString()} changes.`,
+      });
+      for (let t = 0; t <= 4; t++) {
+        const value = (max / 4) * t;
+        const y = top + plotH - (value / max) * plotH;
+        chart.append(svg('line', { class: 'chart__grid', x1: left, x2: width - right, y1: y, y2: y }));
+        chart.append(svg('text', { x: left - 8, y: y + 4, 'text-anchor': 'end' },
+          value.toLocaleString(undefined, { notation: 'compact' })));
+      }
+      const labelEvery = Math.ceil(buckets.length / 10);
+      buckets.forEach((bucket, i) => {
+        const x = left + slot * i + (slot - barW) / 2;
+        let y = top + plotH;
+        Object.keys(SOURCES).forEach((key) => {
+          const h = (bucket.values[key] / max) * plotH;
+          y -= h;
+          const rect = svg('rect', { class: 'chart__bar series-' + key, x, y, width: barW, height: Math.max(h, 0) });
+          rect.append(svg('title', {}, `${bucket.label} — ${SOURCES[key]}: ${bucket.values[key].toLocaleString()}`));
+          chart.append(rect);
+        });
+        if (i % labelEvery === 0 || i === buckets.length - 1) {
+          chart.append(svg('text', { x: x + barW / 2, y: height - 10, 'text-anchor': 'middle' }, bucket.label));
+        }
+      });
+      document.getElementById('trend-chart').replaceChildren(chart);
+      document.getElementById('trend-summary').textContent =
+        `${RANGES[state.range].kpis.changes[0].toLocaleString()} changes in the ${RANGES[state.range].label}. ` +
+        `Busiest: ${buckets[busiest].label} (${totals[busiest].toLocaleString()}). Hover a bar for details.`;
+    }
+
+    function renderSources() {
+      const { sources, kpis } = RANGES[state.range];
+      const total = kpis.changes[0];
+      const radius = 40, stroke = 14, circumference = 2 * Math.PI * radius;
+      const donut = svg('svg', {
+        class: 'chart donut', viewBox: '0 0 100 100', role: 'img',
+        'aria-label': 'Donut chart of changes by source: ' + Object.entries(sources)
+          .map(([key, count]) => `${SOURCES[key]} ${Math.round((count / total) * 100)}%`).join(', '),
+      });
+      donut.append(svg('circle', { class: 'donut__track', cx: 50, cy: 50, r: radius, 'stroke-width': stroke }));
+      let offset = 0;
+      Object.entries(sources).forEach(([key, count]) => {
+        const length = (count / total) * circumference;
+        const segment = svg('circle', {
+          class: 'donut__segment series-' + key, cx: 50, cy: 50, r: radius, 'stroke-width': stroke,
+          'stroke-dasharray': `${length} ${circumference - length}`, 'stroke-dashoffset': -offset,
+          transform: 'rotate(-90 50 50)',
+        });
+        segment.append(svg('title', {}, `${SOURCES[key]}: ${count.toLocaleString()} changes`));
+        donut.append(segment);
+        offset += length;
+      });
+      donut.append(svg('text', { class: 'donut__total', x: 50, y: 50, 'text-anchor': 'middle' },
+        total.toLocaleString(undefined, { notation: 'compact' })));
+      donut.append(svg('text', { x: 50, y: 63, 'text-anchor': 'middle' }, 'changes'));
+
+      const legend = el('ul', 'chart-legend chart-legend--stacked');
+      Object.entries(sources).forEach(([key, count]) => {
+        const item = el('li', 'chart-legend__item series-' + key);
+        item.append(el('span', 'chart-legend__swatch'), SOURCES[key] + ' ',
+          el('span', 'chart-legend__value', `${count.toLocaleString()} (${Math.round((count / total) * 100)}%)`));
+        legend.append(item);
+      });
+      const layout = el('div', 'donut-layout');
+      layout.append(donut, legend);
+      document.getElementById('source-breakdown').replaceChildren(layout);
+    }
+
+    function renderCompliance() {
+      document.getElementById('compliance').replaceChildren(
+        ...COMPLIANCE.map(([name, score]) => progress(name + ' controls met', score, score + '%', score === 100)),
+      );
+    }
+
+    function renderActivity() {
+      const { minutes, label } = RANGES[state.range];
+      const inRange = EVENTS.filter((event) => event.minutesAgo <= minutes);
+      const query = state.query.toLowerCase();
+      const rows = inRange.filter((event) =>
+        (state.source === 'all' || event.source === state.source) &&
+        (!query || [event.user, event.action, event.object].some((value) => value.toLowerCase().includes(query))));
+
+      const tbody = document.getElementById('activity-rows');
+      if (rows.length === 0) {
+        const td = cell('No activity matches your filters. Try another source or search term.');
+        td.colSpan = 7;
+        const tr = el('tr');
+        tr.append(td);
+        tbody.replaceChildren(tr);
+      } else {
+        tbody.replaceChildren(...rows.map((event) => {
+          const tr = el('tr');
+          const severity = el('div', 'cell-badges');
+          severity.append(badge(SEVERITY_BADGE[event.severity], event.severity));
+          if (state.reviewed.has(event.id)) severity.append(badge('success', 'Reviewed'));
+          const view = el('button', 'lp-button lp-button--secondary lp-button--sm', 'View');
+          view.type = 'button';
+          view.setAttribute('aria-label', 'View details: ' + event.action + ' by ' + event.user);
+          view.addEventListener('click', () => openEvent(event));
+          const source = el('span', 'lp-tag lp-tag--neutral');
+          source.append(el('span', 'lp-tag__label', SOURCES[event.source]));
+          tr.append(cell(ago(event.minutesAgo)), cell(event.user), cell(event.action), cell(event.object),
+            cell(source), cell(severity), cell(view));
+          return tr;
+        }));
+      }
+      document.getElementById('activity-count').textContent =
+        'Showing ' + rows.length + ' of ' + inRange.length + ' events from the ' + label + '.';
+    }
+
+    function renderUpdatedAt() {
+      document.getElementById('updated-at').textContent =
+        'Sample data · Updated ' + state.loadedAt.toLocaleTimeString(undefined, { timeStyle: 'short' });
+    }
+
+    function renderDashboard() {
+      renderUpdatedAt();
+      renderKpis();
+      renderTrend();
+      renderSources();
+      renderCompliance();
+      renderActivity();
+    }
+
+    function openEvent(event) {
+      state.current = event;
+      const details = [
+        ['When', eventDate(event).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })],
+        ['User', event.user],
+        ['Action', event.action],
+        ['Object', event.object],
+        ['Source', SOURCES[event.source]],
+        ['Severity', event.severity],
+        ['Computer', event.host],
+        ['IP address', event.ip],
+        ['Status', state.reviewed.has(event.id) ? 'Reviewed' : 'Needs review'],
+      ];
+      document.getElementById('event-details').replaceChildren(...details.map(([key, value]) => {
+        const tr = el('tr');
+        const th = el('th', 'lp-table__th');
+        th.scope = 'row';
+        const inner = el('div', 'lp-table__header-inner');
+        inner.append(el('span', 'lp-table__header-label', key));
+        th.append(inner);
+        tr.append(th, cell(value));
+        return tr;
+      }));
+      const markButton = document.getElementById('mark-reviewed');
+      markButton.disabled = state.reviewed.has(event.id);
+      markButton.textContent = markButton.disabled ? 'Already reviewed' : 'Mark as reviewed';
+      if (window.Lepidus) Lepidus.openModal('event-modal');
+    }
+
+    document.getElementById('mark-reviewed').addEventListener('click', () => {
+      if (!state.current) return;
+      state.reviewed.add(state.current.id);
+      writeStore('lp-reviewed', [...state.reviewed]);
+      renderActivity();
+      if (window.Lepidus) Lepidus.closeModal();
+      toast({ title: 'Marked as reviewed', message: state.current.action + ' by ' + state.current.user + '.', variant: 'success' });
+    });
+
+    document.getElementById('investigate').addEventListener('click', () => openEvent(EVENTS[0]));
+
+    document.getElementById('range-picker').addEventListener('lp-dropdown-change', (event) => {
+      const option = event.detail.option;
+      const range = option.dataset.value;
+      if (!(range in RANGES)) return;
+      state.range = range;
+      const picker = document.getElementById('range-picker');
+      picker.querySelector('.lp-dropdown__trigger-label').textContent = option.textContent.trim();
+      picker.querySelectorAll('[role="option"]').forEach((item) => {
+        item.setAttribute('aria-selected', String(item === option));
+      });
+      renderDashboard();
+    });
+
+    // lepidus.js owns tab selection; follow it by watching aria-selected.
+    const sourceTabs = document.getElementById('source-tabs');
+    new MutationObserver(() => {
+      const selected = sourceTabs.querySelector('[aria-selected="true"]');
+      if (selected && selected.dataset.source !== state.source) {
+        state.source = selected.dataset.source;
+        renderActivity();
+      }
+    }).observe(sourceTabs, { subtree: true, attributeFilter: ['aria-selected'] });
+
+    document.getElementById('activity-search').addEventListener('input', (event) => {
+      state.query = event.target.value.trim();
+      renderActivity();
+    });
+
+    document.getElementById('refresh').addEventListener('click', () => {
+      state.loadedAt = new Date();
+      renderDashboard();
+      toast({ title: 'Dashboard refreshed', message: 'Showing the latest sample figures.', variant: 'info' });
+    });
+
+    const sampleNote = document.getElementById('sample-note');
+    sampleNote.hidden = readStore('lp-sample-note-hidden', false);
+    document.getElementById('sample-note-close').addEventListener('click', () => {
+      sampleNote.hidden = true;
+      writeStore('lp-sample-note-hidden', true);
+    });
+
+    const prefs = readStore('lp-prefs', { criticalEmail: true, weeklySummary: false });
+    document.querySelectorAll('[data-pref]').forEach((toggle) => {
+      const key = toggle.dataset.pref;
+      const sync = () => {
+        toggle.classList.toggle('lp-toggle--on', prefs[key]);
+        toggle.setAttribute('aria-checked', String(prefs[key]));
+      };
+      sync();
+      toggle.addEventListener('click', () => {
+        prefs[key] = !prefs[key];
+        sync();
+        writeStore('lp-prefs', prefs);
+        const label = document.getElementById(toggle.getAttribute('aria-labelledby')).textContent;
+        toast({ title: 'Preference saved', message: label + (prefs[key] ? ' is on.' : ' is off.'), variant: 'success' });
+      });
     });
 
     loadProfile();
