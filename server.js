@@ -5,7 +5,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const { createClient } = require('@supabase/supabase-js');
 
-const { SUPABASE_URL, SUPABASE_ANON_KEY, PORT = 3000, NODE_ENV } = process.env;
+const { SUPABASE_URL, SUPABASE_ANON_KEY, APP_URL, PORT = 3000, NODE_ENV } = process.env;
 if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
   throw new Error('Set SUPABASE_URL and SUPABASE_ANON_KEY in .env');
 }
@@ -27,6 +27,8 @@ function text(value, maxLength) {
 
 const app = express();
 app.disable('x-powered-by');
+// Behind Vercel's proxy, req.protocol must come from X-Forwarded-Proto.
+app.set('trust proxy', 1);
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 
@@ -116,6 +118,61 @@ app.get('/api/me', async (req, res) => {
 app.post('/api/logout', (req, res) => {
   res.clearCookie(SESSION_COOKIE);
   res.status(204).end();
+});
+
+app.post('/api/forgot-password', async (req, res) => {
+  const email = text(req.body.email, 254).toLowerCase();
+  if (!EMAIL_PATTERN.test(email)) {
+    return res.status(400).json({ error: 'Enter a valid email address.' });
+  }
+
+  const origin = APP_URL || `${req.protocol}://${req.get('host')}`;
+  const { error } = await supabaseClient().auth.resetPasswordForEmail(email, {
+    redirectTo: `${origin}/reset-password`,
+  });
+
+  if (error && error.status === 429) {
+    return res.status(429).json({ error: 'Too many emails have been sent. Wait a while, then try again.' });
+  }
+  if (error) {
+    console.error('resetPasswordForEmail failed:', error.message);
+  }
+
+  // Same response whether or not the account exists, so emails cannot be enumerated.
+  res.json({ ok: true });
+});
+
+app.post('/api/reset-password', async (req, res) => {
+  const accessToken = text(req.body.accessToken, 4096);
+  const refreshToken = text(req.body.refreshToken, 512);
+  const password = typeof req.body.password === 'string' ? req.body.password : '';
+
+  if (!accessToken || !refreshToken) {
+    return res.status(400).json({ error: 'This reset link is invalid or has expired. Request a new one.' });
+  }
+  if (password.length < 8 || password.length > 72) {
+    return res.status(400).json({ error: 'Enter a password of 8–72 characters.' });
+  }
+
+  const client = supabaseClient();
+  const { error: sessionError } = await client.auth.setSession({
+    access_token: accessToken,
+    refresh_token: refreshToken,
+  });
+  if (sessionError) {
+    return res.status(401).json({ error: 'This reset link is invalid or has expired. Request a new one.' });
+  }
+
+  const { error } = await client.auth.updateUser({ password });
+  if (error) {
+    const message = error.code === 'same_password'
+      ? 'Choose a password that is different from your current one.'
+      : error.message;
+    return res.status(400).json({ error: message });
+  }
+
+  res.clearCookie(SESSION_COOKIE);
+  res.json({ ok: true });
 });
 
 app.get('/', (req, res) => res.redirect('/login'));
