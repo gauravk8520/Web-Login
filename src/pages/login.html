@@ -28,13 +28,113 @@
       align-content: center;
       gap: var(--space-10);
       padding: calc(var(--space-14) + var(--space-9)) var(--space-12);
-      background: var(--color-brand-light);
+      background: linear-gradient(160deg, var(--color-brand-light), var(--color-background-page));
     }
 
     .auth-brand__inner {
       display: grid;
-      gap: var(--space-10);
-      max-inline-size: calc(var(--space-14) * 6);
+      gap: var(--space-11);
+      max-inline-size: calc(var(--space-14) * 9);
+    }
+
+    .auth-brand__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .auth-brand__product {
+      color: var(--color-text-brand);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .auth-brand__intro {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .auth-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-14) * 3)), 1fr));
+      gap: var(--space-8);
+      margin: var(--space-0);
+      padding: var(--space-0);
+      list-style: none;
+    }
+
+    .auth-feature {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .auth-feature__icon {
+      display: grid;
+      place-items: center;
+      inline-size: var(--space-12);
+      block-size: var(--space-12);
+      border-radius: var(--radius-m);
+      background: var(--color-brand-light);
+      color: var(--color-text-brand);
+    }
+
+    .auth-feature__icon svg {
+      inline-size: var(--space-9);
+      block-size: var(--space-9);
+    }
+
+    .auth-feature__title {
+      margin: var(--space-0);
+      font-size: var(--typography-heading-h6-fontSize);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .auth-feature__text {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+    }
+
+    .auth-compliance {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .auth-compliance__label {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+      font-size: var(--typography-label-md-fontSize);
+      line-height: var(--typography-label-md-lineHeight);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+    }
+
+    .auth-compliance__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    .auth-trust {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+      font-size: var(--typography-body-sm-fontSize);
+      line-height: var(--typography-body-sm-lineHeight);
+    }
+
+    .auth-trust svg {
+      flex: none;
+      inline-size: var(--space-8);
+      block-size: var(--space-8);
+      color: var(--color-status-success-text);
+    }
+
+    .auth-footer {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+      font-size: var(--typography-body-sm-fontSize);
+      text-align: center;
     }
 
     .auth-brand__title {
@@ -50,27 +150,6 @@
       color: var(--color-text-secondary);
       font-size: var(--typography-body-lg-fontSize);
       line-height: var(--typography-body-lg-lineHeight);
-    }
-
-    .auth-brand__list {
-      display: grid;
-      gap: var(--space-8);
-      margin: var(--space-0);
-      padding: var(--space-0);
-      list-style: none;
-    }
-
-    .auth-brand__item {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-6);
-    }
-
-    .auth-brand__tick {
-      flex: none;
-      inline-size: var(--space-9);
-      block-size: var(--space-9);
-      color: var(--color-text-brand);
     }
 
     .auth-panel {
@@ -164,26 +243,85 @@
   <main class="auth-layout">
     <section class="auth-brand" aria-labelledby="brand-title">
       <div class="auth-brand__inner">
-        <img src="https://lepide-design-system.vercel.app/v1/brand/lepide-mark.svg" width="40" height="40" alt="Lepide">
-        <h2 class="auth-brand__title" id="brand-title">See who changed what, and when.</h2>
-        <p class="auth-brand__lead">Audit, monitor and protect your data from one place.</p>
-        <ul class="auth-brand__list">
-          <li class="auth-brand__item">
-            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
-                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
-            <span>Track changes across your environment</span>
+        <div class="auth-brand__logo">
+          <img src="https://lepide-design-system.vercel.app/v1/brand/lepide-mark.svg" width="40" height="40" alt="Lepide">
+          <span class="auth-brand__product">Lepide Data Security Platform</span>
+        </div>
+
+        <div class="auth-brand__intro">
+          <h2 class="auth-brand__title" id="brand-title">See who changed what, where and when.</h2>
+          <p class="auth-brand__lead">Audit activity across Active Directory, file servers and Microsoft 365. Spot risky changes, tighten permissions and prove compliance from one console.</p>
+        </div>
+
+        <ul class="auth-features" aria-label="What you can do with Lepide">
+          <li>
+            <div class="lp-card lp-card--elevated lp-card--borderless">
+              <div class="lp-card__body auth-feature">
+                <span class="auth-feature__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </span>
+                <h3 class="auth-feature__title">Audit every change</h3>
+                <p class="auth-feature__text">Real-time records of who changed what, where and when.</p>
+              </div>
+            </div>
           </li>
-          <li class="auth-brand__item">
-            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
-                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
-            <span>Investigate suspicious activity quickly</span>
+          <li>
+            <div class="lp-card lp-card--elevated lp-card--borderless">
+              <div class="lp-card__body auth-feature">
+                <span class="auth-feature__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.8-9.8M16 7l3 3M18.5 4.5l2 2"/>
+                  </svg>
+                </span>
+                <h3 class="auth-feature__title">Analyze permissions</h3>
+                <p class="auth-feature__text">Find over-exposed data and remove excessive access.</p>
+              </div>
+            </div>
           </li>
-          <li class="auth-brand__item">
-            <svg class="auth-brand__tick" viewBox="0 0 10 8" fill="none" stroke="currentColor"
-                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4.2 3.8 7 9 1"/></svg>
-            <span>Keep your team accountable with clear reports</span>
+          <li>
+            <div class="lp-card lp-card--elevated lp-card--borderless">
+              <div class="lp-card__body auth-feature">
+                <span class="auth-feature__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="M12 8v4M12 16h.01"/>
+                  </svg>
+                </span>
+                <h3 class="auth-feature__title">Detect threats</h3>
+                <p class="auth-feature__text">Get alerted to unusual user behavior and ransomware activity.</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="lp-card lp-card--elevated lp-card--borderless">
+              <div class="lp-card__body auth-feature">
+                <span class="auth-feature__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/>
+                  </svg>
+                </span>
+                <h3 class="auth-feature__title">Prove compliance</h3>
+                <p class="auth-feature__text">Ready-made reports for auditors, scheduled or on demand.</p>
+              </div>
+            </div>
           </li>
         </ul>
+
+        <div class="auth-compliance">
+          <p class="auth-compliance__label">Compliance reporting for</p>
+          <div class="auth-compliance__list">
+            <span class="lp-badge lp-badge--default">GDPR</span>
+            <span class="lp-badge lp-badge--default">HIPAA</span>
+            <span class="lp-badge lp-badge--default">SOX</span>
+            <span class="lp-badge lp-badge--default">PCI DSS</span>
+            <span class="lp-badge lp-badge--default">ISO 27001</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -201,8 +339,14 @@
                 <div class="lp-input__row lp-input__row--label-top">
                   <label class="lp-input__label" for="email">Email</label>
                   <div class="lp-input__field" id="email-field">
+                    <span class="lp-input__icon-left">
+                      <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"
+                           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2" y="3.5" width="14" height="11" rx="2"/><path d="m2.5 5 6.5 5 6.5-5"/>
+                      </svg>
+                    </span>
                     <input class="lp-input__input" id="email" name="email" type="email" autocomplete="username"
-                           required aria-invalid="false" aria-describedby="email-hint">
+                           placeholder="name@company.com" required aria-invalid="false" aria-describedby="email-hint">
                   </div>
                 </div>
                 <div class="lp-input__message" id="email-hint">Use your work email</div>
@@ -213,6 +357,12 @@
                 <div class="lp-input__row lp-input__row--label-top">
                   <label class="lp-input__label" for="password">Password</label>
                   <div class="lp-input__field" id="password-field">
+                    <span class="lp-input__icon-left">
+                      <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"
+                           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="8" width="12" height="8" rx="2"/><path d="M5.5 8V5.5a3.5 3.5 0 0 1 7 0V8"/>
+                      </svg>
+                    </span>
                     <input class="lp-input__input" id="password" name="password" type="password" autocomplete="current-password"
                            required aria-invalid="false" aria-describedby="password-error">
                   </div>
@@ -262,7 +412,17 @@
           </div>
         </div>
 
-        <p class="auth-help">No account? <a class="lp-link" href="/signup">Create an account</a></p>
+        <p class="auth-help">New to Lepide? <a class="lp-link" href="/signup">Create an account</a></p>
+
+        <p class="auth-trust">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="8" width="12" height="8" rx="2"/><path d="M5.5 8V5.5a3.5 3.5 0 0 1 7 0V8"/>
+          </svg>
+          <span>Your connection is encrypted, and passwords are stored only as secure hashes.</span>
+        </p>
+
+        <p class="auth-footer">&copy; 2026 Lepide. All rights reserved.</p>
       </div>
     </section>
   </main>
