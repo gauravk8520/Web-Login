@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in to Lepide</title>
+  <link rel="stylesheet" href="https://lepide-design-system.vercel.app/v1/lepidus.css">
+  <style>
+    body {
+      margin: var(--space-0);
+      background: var(--color-background-page);
+      color: var(--color-text-primary);
+      font-family: var(--font-family-primary);
+      font-size: var(--typography-body-md-fontSize);
+      line-height: var(--typography-body-md-lineHeight);
+      letter-spacing: var(--typography-body-md-letterSpacing);
+    }
+
+    .login-page {
+      box-sizing: border-box;
+      display: grid;
+      min-block-size: 100vh;
+      min-block-size: 100svh;
+      place-items: center;
+      padding: calc(var(--space-14) + var(--space-13)) var(--space-8);
+    }
+
+    .login-content {
+      display: grid;
+      gap: var(--space-10);
+      inline-size: 100%;
+      max-inline-size: calc(var(--space-14) * 7);
+      min-inline-size: var(--space-0);
+    }
+
+    .login-heading {
+      display: grid;
+      justify-items: center;
+      gap: var(--space-8);
+      text-align: center;
+    }
+
+    .login-title {
+      margin: var(--space-0);
+      font-size: var(--typography-heading-h1-fontSize);
+      line-height: var(--typography-heading-h1-lineHeight);
+      letter-spacing: var(--typography-heading-h1-letterSpacing);
+    }
+
+    .login-form {
+      display: grid;
+      gap: var(--space-9);
+    }
+
+    .login-options {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+    }
+
+    .login-help {
+      margin: var(--space-0);
+      color: var(--color-text-secondary);
+      text-align: center;
+    }
+
+    .theme-switcher {
+      position: absolute;
+      inset-block-start: var(--space-9);
+      inset-inline-end: var(--space-9);
+      inline-size: calc(var(--space-14) * 3);
+      max-inline-size: calc(100% - var(--space-12));
+    }
+  </style>
+</head>
+<body>
+  <aside class="theme-switcher" aria-label="Appearance">
+    <div class="lp-dropdown lp-dropdown--full-width" id="theme-switcher" data-lp-dropdown="single">
+      <button class="lp-dropdown__trigger" type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Theme">
+        <span class="lp-dropdown__trigger-label">Light</span>
+        <svg class="lp-dropdown__chevron" viewBox="0 0 12 6" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 4 5-4"/></svg>
+      </button>
+      <div class="lp-dropdown__panel" hidden>
+        <div class="lp-dropdown__header">
+          <span class="lp-dropdown__header-label">Theme</span>
+          <svg class="lp-dropdown__chevron lp-dropdown__chevron--open" viewBox="0 0 12 6" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 4 5-4"/></svg>
+        </div>
+        <div class="lp-dropdown__list" role="listbox" aria-label="Theme">
+          <button class="lp-dropdown__option" type="button" role="option" data-value="light" aria-selected="true">
+            <span class="lp-dropdown__option-label">Light</span>
+          </button>
+          <button class="lp-dropdown__option" type="button" role="option" data-value="dark" aria-selected="false">
+            <span class="lp-dropdown__option-label">Dark</span>
+          </button>
+          <button class="lp-dropdown__option" type="button" role="option" data-value="hc" aria-selected="false">
+            <span class="lp-dropdown__option-label">High contrast</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="login-page">
+    <div class="login-content">
+      <header class="login-heading">
+        <img src="https://lepide-design-system.vercel.app/v1/brand/lepide-mark.svg" width="40" height="40" alt="Lepide">
+        <h1 class="login-title">Sign in to Lepide</h1>
+      </header>
+
+      <div class="lp-card">
+        <div class="lp-card__body">
+          <form class="login-form" id="login-form" novalidate>
+            <div class="lp-input lp-input--full-width">
+              <div class="lp-input__row lp-input__row--label-top">
+                <label class="lp-input__label" for="email">Email</label>
+                <div class="lp-input__field" id="email-field">
+                  <input class="lp-input__input" id="email" name="email" type="email" autocomplete="username"
+                         required aria-invalid="false" aria-describedby="email-hint">
+                </div>
+              </div>
+              <div class="lp-input__message" id="email-hint">Use your work email</div>
+              <div class="lp-input__message lp-input__message--error" id="email-error" hidden>Enter your email.</div>
+            </div>
+
+            <div class="lp-input lp-input--full-width">
+              <div class="lp-input__row lp-input__row--label-top">
+                <label class="lp-input__label" for="password">Password</label>
+                <div class="lp-input__field" id="password-field">
+                  <input class="lp-input__input" id="password" name="password" type="password" autocomplete="current-password"
+                         required aria-invalid="false" aria-describedby="password-error">
+                </div>
+              </div>
+              <div class="lp-input__message lp-input__message--error" id="password-error" hidden>Enter your password.</div>
+            </div>
+
+            <div class="login-options">
+              <label class="lp-checkbox">
+                <span class="lp-checkbox__control">
+                  <input class="lp-checkbox__input" type="checkbox" name="remember" value="yes">
+                  <span class="lp-checkbox__box" aria-hidden="true">
+                    <svg class="lp-checkbox__check" viewBox="0 0 10 8" fill="none" stroke="currentColor"
+                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4.2 3.8 7 9 1"/></svg>
+                    <svg class="lp-checkbox__dash" viewBox="0 0 10 2" fill="none" stroke="currentColor"
+                         stroke-width="1.8" stroke-linecap="round"><path d="M1 1h8"/></svg>
+                  </span>
+                </span>
+                <span class="lp-checkbox__label">Remember me</span>
+              </label>
+              <a class="lp-link lp-link--standalone" href="/forgot-password">Forgot password?</a>
+            </div>
+
+            <!-- Hide the wrapper: the component's display rule must not override hidden. -->
+            <div id="login-error" hidden>
+              <div class="lp-message lp-message--error" role="alert">
+                <span class="lp-message__icon">
+                  <svg viewBox="0 0 45 45" fill="none" aria-hidden="true">
+                    <rect x="2" y="2" width="41" height="41" rx="10" stroke="currentColor" stroke-width="3"/>
+                    <path d="M22.5 12 33 31.5H12L22.5 12Z" stroke="currentColor" stroke-width="2.4"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.5 20v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="22.5" cy="28.5" r="1.2" fill="currentColor"/>
+                  </svg>
+                </span>
+                <div class="lp-message__content">
+                  <div class="lp-message__text">
+                    <h3 class="lp-message__title" id="login-error-title">Complete the required fields</h3>
+                    <p class="lp-message__body" id="login-error-body">Enter your email and password, then try again.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="lp-button lp-button--primary lp-button--md lp-button--full-width" type="submit">Sign in</button>
+          </form>
+        </div>
+      </div>
+
+      <p class="login-help">No account? <a class="lp-link" href="/signup">Create an account</a></p>
+    </div>
+  </main>
+
+  <script src="https://lepide-design-system.vercel.app/v1/lepidus.js" defer></script>
+  <script>
+    const themeSwitcher = document.getElementById('theme-switcher');
+    themeSwitcher.addEventListener('lp-dropdown-change', (event) => {
+      const theme = event.detail.option.dataset.value;
+      if (!['light', 'dark', 'hc'].includes(theme)) {
+        throw new Error('Unsupported Lepidus theme: ' + theme);
+      }
+      document.documentElement.dataset.theme = theme;
+      themeSwitcher.querySelectorAll('[role="option"]').forEach((option) => {
+        option.setAttribute('aria-selected', String(option === event.detail.option));
+      });
+    });
+
+    const form = document.getElementById('login-form');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const emailError = document.getElementById('email-error');
+    const passwordError = document.getElementById('password-error');
+    const summary = document.getElementById('login-error');
+    const summaryTitle = document.getElementById('login-error-title');
+    const summaryBody = document.getElementById('login-error-body');
+
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const emailInvalid = !email.validity.valid;
+      const passwordInvalid = !password.validity.valid;
+
+      email.setAttribute('aria-invalid', String(emailInvalid));
+      password.setAttribute('aria-invalid', String(passwordInvalid));
+      email.setAttribute('aria-describedby', emailInvalid ? 'email-error' : 'email-hint');
+      document.getElementById('email-field').classList.toggle('lp-input__field--error', emailInvalid);
+      document.getElementById('password-field').classList.toggle('lp-input__field--error', passwordInvalid);
+      emailError.textContent = email.validity.valueMissing ? 'Enter your email.' : 'Enter a valid work email.';
+      emailError.hidden = !emailInvalid;
+      passwordError.hidden = !passwordInvalid;
+      document.getElementById('email-hint').hidden = emailInvalid;
+
+      if (emailInvalid || passwordInvalid) {
+        summaryTitle.textContent = 'Check your sign-in details';
+        summaryBody.textContent = 'Complete the required fields with a valid email and your password, then try again.';
+        summary.hidden = false;
+        (emailInvalid ? email : password).focus();
+        return;
+      }
+
+      summary.hidden = true;
+      submitButton.disabled = true;
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email.value,
+            password: password.value,
+            remember: form.elements.remember.checked,
+          }),
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          summaryTitle.textContent = 'Sign-in failed';
+          summaryBody.textContent = result.error;
+          summary.hidden = false;
+          return;
+        }
+        password.value = '';
+        const name = result.profile ? result.profile.full_name : email.value;
+        Lepidus.toast({ title: 'Signed in', message: 'Welcome, ' + name + '.', variant: 'success' });
+      } catch {
+        summaryTitle.textContent = 'Sign-in failed';
+        summaryBody.textContent = 'The server could not be reached. Try again.';
+        summary.hidden = false;
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
